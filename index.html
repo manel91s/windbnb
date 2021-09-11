@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -28,18 +28,21 @@
           <div class="siteheader_findemobile">
             <div class="findemobile_menu">
               <p class="no-margin">Edit your search</p>
-              <span>X</span>
+              <span class="close_menu">X</span>
             </div>
 
             
             <div class="findemobile_box-option">
               <div>
-                <p>Location</p>
+                <p class="w-800">Location</p>
                 <input type="text" id="location" value="">
               </div>
               <div>
-                <p>Guests</p>
+                <p class="w-800">Guests</p>
                 <input type="text" id="guests" placeholder="Add guests">
+              </div>
+              <div class="md-search align-center">
+                <button class="btn">Search</button>
               </div>
             </div>
 
@@ -47,19 +50,19 @@
               <li><span class="material-icons">
                 location_on
                 </span>
-                Helsinki, Finland</li>
+                <span class="text-country">Helsinki, Finland</span></li>
               <li><span class="material-icons">
                 location_on
                 </span>
-                Turku, Finland</li>
+                <span class="text-country">Turku, Finland</span></li>
               <li><span class="material-icons">
                 location_on
                 </span>
-                Oulu Finland</li>
+                <span class="text-country">Oulu Finland</span></li>
               <li><span class="material-icons">
                 location_on
                 </span>
-                Vaasa, Finland</li>
+                <span class="text-country">Vaasa, Finland</span></li>
             </ul>
 
             <div class="search-box">
@@ -70,8 +73,8 @@
           </div>
 
           <nav class="siteheader_finder">
-              <div class="menu-city"><span>Helsinki, Finland</span></div>
-              <div><span>Add guests</span></div>
+              <div class="menu-city"><span class="info-locality">Put Locality</span></div>
+              <div class="guests"><span class="info-guests">Add guests</span></div>
               <div>
                 <span class="material-icons">
                 search</span>
@@ -81,6 +84,9 @@
   </header>
 
   <section class="site-section">
+    <div class="active-bg">
+      
+    </div>
     <div class="container">
       <div class="site-section_info-stays">
         <h1>Stays in lorem</h1>

@@ -1,10 +1,55 @@
 import { consultApartments } from './fetchApartments.js';
 const sectionCards = document.querySelector('.site-section_cards');
+const headerFinder = document.querySelector('.siteheader_finder');
+const findeMobile = document.querySelector('.siteheader_findemobile');
+const closeMenu   = document.querySelector('.close_menu');
+const locationCity = document.querySelector('#location');
+const guests = document.querySelector('#guests');
+const listCountrys = document.querySelectorAll('.list-country li');
+const siteSection = document.querySelector('.site-section');
 
 addEventListeners();
 
 function addEventListeners() {
+    listCountrys.forEach((country) => {
+        country.addEventListener('click', putClickLocation);
+    })
+    headerFinder.addEventListener('click', showMenu);
+    closeMenu.addEventListener('click', closeMobileMenu);
     window.addEventListener('DOMContentLoaded', domLoaded);
+}
+
+function putClickLocation(e) {
+    if(e.target.classList.contains('text-country')) {
+        locationCity.value = e.target.textContent;
+    }
+}
+
+function showMenu(e) {
+    
+    if(window.matchMedia("(min-width:768px)").matches) {
+        siteSection.classList.add('active-bg');
+    }
+
+    findeMobile.style.visibility = 'visible';
+    findeMobile.style.top = '0px';
+
+    if(e.target.classList.contains('menu-city') || e.target.classList.contains('info-locality')){
+        locationCity.focus();
+    }
+
+    if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests')) {
+        guests.focus();
+    }
+
+}
+
+function closeMobileMenu() {
+    findeMobile.style.top = '-730px';
+
+    setTimeout(() => {
+        findeMobile.style.visibility = 'hidden';
+    }, 1000);
 }
 
 async function domLoaded() {
@@ -33,4 +78,5 @@ function printApartments(apartments) {
         sectionCards.appendChild(div);
     });
 }
+
 

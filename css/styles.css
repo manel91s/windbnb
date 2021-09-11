@@ -17,6 +17,9 @@ img {
     
 }
 
+.w-800 {
+    font-weight: 800;
+}
 .no-margin {
     margin:0;
 }
@@ -41,12 +44,14 @@ h1 {
 .siteheader_finder{
     font-family: 'Mulish';
     font-weight: 400;
-    width: 29.7rem;
+    width: 24.7rem;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
     border-radius: 1.6rem;
     display:flex;
     align-items: center;
+    cursor:pointer; 
     margin:auto;
+    
 }
 
 .siteheader_finder > div {
@@ -164,9 +169,13 @@ h1 {
     color: #333333; 
 }
 
-#list-country {
-    background-color: transparent;
-    border:none;
+
+.list-country > li {
+    cursor:pointer;
+}
+
+.list-country li > span:nth-child(2) {
+    font-weight:400;
 }
 
 header {
@@ -175,19 +184,28 @@ header {
 }
 
 .siteheader_findemobile{
+    visibility: hidden;
     font-family: 'Mulish';
     z-index:1;
     background-color: #ffffff;
     position:absolute;
-    top:0;
+    top:-730px;
     left:0;
     width:100%;
     padding: 2rem 1rem;
+    transition: top 1s;
+    
 }
 
 .findemobile_menu {
     display:flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.close_menu{
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .findemobile_menu {
@@ -206,6 +224,37 @@ header {
 
 .findemobile_box-option div {
     padding:1.3rem 2.6rem;
+}
+
+.md-search {
+    display:none;
+}
+
+@media (min-width: 768px) {
+
+    .md-search {
+        display:block;
+    }
+    .findemobile_box-option {
+        display:flex;
+    }
+
+    .findemobile_box-option div {
+        border-right: 0.1rem solid #F2F2F2;
+        flex-basis: 33.3%;
+    }
+
+    .align-center{
+        align-self: center;
+    }
+
+    .search-box {
+        display:none;
+    }
+}
+
+.findemobile_box-option input {
+    border: none;
 }
 
 .findemobile_box-option > div:nth-child(1) {
@@ -234,10 +283,9 @@ header {
 .search-box {
     padding-top: 18rem;
     text-align: center;
-
 }
 
-.search-box > button {
+button {
     padding-left: 5.5rem;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
@@ -251,13 +299,24 @@ header {
     position:relative;
 }
 
-.search-box > button:before{
+button:before{
     content: url('../img/search.svg');
     position:absolute;
     left: 20px;
     top: 12px;
 
 }
+
+#location {
+    outline: none;
+}
+
+#guests {
+    outline: none;
+}
+
+
+
 
 
 
