@@ -1,0 +1,266 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+}
+
+img {
+    max-width: 100%;
+    
+}
+
+.no-margin {
+    margin:0;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+.container {
+    max-width: 160rem;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.site-header {
+    padding: 4.9rem 0rem;
+}
+
+.site-header_logo {
+    padding-bottom: 5rem;
+}
+.siteheader_finder{
+    font-family: 'Mulish';
+    font-weight: 400;
+    width: 29.7rem;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1.6rem;
+    display:flex;
+    align-items: center;
+    margin:auto;
+}
+
+.siteheader_finder > div {
+    border-right: 0.1rem solid #F2F2F2;
+}
+
+.siteheader_finder div:nth-child(1) > span {
+    color:#333333;
+}
+
+.siteheader_finder div:nth-child(2) > span{
+    color:#BDBDBD;
+}
+
+.siteheader_finder > div:last-of-type {
+    border-right: none;
+}
+
+
+@media(min-width:768px) {
+
+    .navigate {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .siteheader_finder {
+        margin: 0;
+    }
+    .site-header_logo {
+        padding: 0;
+    }
+}
+
+.siteheader_finder > div {
+    padding: 1.9rem 1.4rem;
+}
+
+.siteheader_finder div > .material-icons {
+    color: rgba(235, 87, 87, 0.9);
+}
+
+.site-section_info-stays {
+    font-family: 'Montserrat';
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 3.4rem;
+}
+
+.site-section_cards {
+    display:grid;
+    grid-auto-rows: auto;
+    column-gap:4rem;
+    row-gap: 4rem;
+}
+
+@media(min-width: 768px) {
+    .site-section_cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.info-apartment {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-section_cards div > img {
+    border-radius: 2.4rem;
+    
+}
+
+@media (min-width:768px) {
+    .site-section_cards div > img {
+        width: 513px;
+        height: 342px;
+    }
+}
+
+.site-section_cards div > .su_border {
+    border: 1px solid #4F4F4F;
+    border-radius: 1.2rem;
+    color: #4F4F4F;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color:transparent;
+    padding: 0.7rem 0.9rem;
+}
+
+.info-type {
+    color: #828282;
+    font-weight:500;
+
+}
+
+.info-apartment > .rating {
+    position:relative;
+    z-index: -1;
+}
+
+.rating > .material-icons {
+    position:absolute;
+    left: -2.5rem;
+    top: -0.6rem;
+    color: #EB5757;
+}
+
+.info-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333333; 
+}
+
+#list-country {
+    background-color: transparent;
+    border:none;
+}
+
+header {
+    position:relative;
+    z-index:0;
+}
+
+.siteheader_findemobile{
+    font-family: 'Mulish';
+    z-index:1;
+    background-color: #ffffff;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding: 2rem 1rem;
+}
+
+.findemobile_menu {
+    display:flex;
+    justify-content: space-between;
+}
+
+.findemobile_menu {
+    padding-bottom:1.6rem;
+}
+
+.findemobile_menu > p, span{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.findemobile_box-option {
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1.6rem;
+}
+
+.findemobile_box-option div {
+    padding:1.3rem 2.6rem;
+}
+
+.findemobile_box-option > div:nth-child(1) {
+    border-bottom: 0.1rem solid #F2F2F2;
+}
+
+.list-country {
+    
+    list-style: none;
+    padding:0 2rem;   
+}
+
+
+.list-country li {
+    display:flex;
+    align-items: center;
+    font-weight:400;
+    font-size:1.4rem;  
+    padding-top: 3.4rem;
+}
+
+.list-country li > span {
+    padding-right: 0.5rem;
+}
+
+.search-box {
+    padding-top: 18rem;
+    text-align: center;
+
+}
+
+.search-box > button {
+    padding-left: 5.5rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    padding-right: 2.4rem;
+    border-radius: 1.6rem;
+    border: none;
+    background-color: rgba(235, 87, 87, 0.9);
+    color: #ffffff; 
+    font-size:1.4rem;
+    font-weight: 700;
+    position:relative;
+}
+
+.search-box > button:before{
+    content: url('../img/search.svg');
+    position:absolute;
+    left: 20px;
+    top: 12px;
+
+}
+
+
+
+
+
+
