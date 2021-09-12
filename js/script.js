@@ -25,11 +25,23 @@ function putClickLocation(e) {
     }
 }
 
+function fadeInMenu() {
+    if(window.matchMedia("(min-width:768px)").matches) {
+        siteSection.style.zIndex = '-1';
+        $(".active-bg").fadeIn(1000,"linear")
+    }
+}
+
+function fadeOutMenu() {
+    if(window.matchMedia("(min-width:768px)").matches) {
+        siteSection.style.zIndex = 'auto';
+        $(".active-bg").fadeOut(1000,"linear")
+    }
+}
+
 function showMenu(e) {
     
-    if(window.matchMedia("(min-width:768px)").matches) {
-        siteSection.classList.add('active-bg');
-    }
+    fadeInMenu();
 
     findeMobile.style.visibility = 'visible';
     findeMobile.style.top = '0px';
@@ -45,6 +57,9 @@ function showMenu(e) {
 }
 
 function closeMobileMenu() {
+
+    fadeOutMenu();
+    
     findeMobile.style.top = '-730px';
 
     setTimeout(() => {
