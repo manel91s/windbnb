@@ -7,6 +7,16 @@ const locationCity = document.querySelector('#location');
 const guests = document.querySelector('#guests');
 const listCountrys = document.querySelectorAll('.list-country li');
 const siteSection = document.querySelector('.site-section');
+const divLocation = document.querySelector(".box-location");
+const divGuests = document.querySelector(".box-guests");
+const inputLocation = document.querySelector("#location");
+const inputGuests = document.querySelector("#guests");
+const listCountry = document.querySelector('.list-country');
+const listGuest = document.querySelector('.list-guest');
+const filter = {
+    location : '',
+    guests   : ''
+}
 
 addEventListeners();
 
@@ -17,6 +27,26 @@ function addEventListeners() {
     headerFinder.addEventListener('click', showMenu);
     closeMenu.addEventListener('click', closeMobileMenu);
     window.addEventListener('DOMContentLoaded', domLoaded);
+    inputLocation.addEventListener('input', addInfoFilter);
+    inputGuests.addEventListener('input', addInfoFilter);
+
+}
+
+function addInfoFilter(e) {
+    focusBox(e);
+    showList(e);
+    filter[e.target.name] = e.target.value;
+    
+}
+
+function showList(e) {
+    if(e.target.classList.contains('ilocation')){
+        listGuest.classList.remove('v-visible');
+        listCountry.classList.add('v-visible');
+    }else{
+        listCountry.classList.remove('v-visible');
+        listGuest.classList.add('v-visible');
+    }
 }
 
 function putClickLocation(e) {
@@ -27,14 +57,12 @@ function putClickLocation(e) {
 
 function fadeInMenu() {
     if(window.matchMedia("(min-width:768px)").matches) {
-        siteSection.style.zIndex = '-1';
         $(".active-bg").fadeIn(1000,"linear")
     }
 }
 
 function fadeOutMenu() {
     if(window.matchMedia("(min-width:768px)").matches) {
-        siteSection.style.zIndex = 'auto';
         $(".active-bg").fadeOut(1000,"linear")
     }
 }
@@ -45,21 +73,28 @@ function showMenu(e) {
 
     findeMobile.style.visibility = 'visible';
     findeMobile.style.top = '0px';
+    focusBox(e);
 
-    if(e.target.classList.contains('menu-city') || e.target.classList.contains('info-locality')){
+}
+
+function focusBox(e) {
+        if(e.target.classList.contains('menu-city') || e.target.classList.contains('info-locality') || e.target.classList.contains('ilocation')){
+        divGuests.classList.remove('border-menu');
+        divLocation.classList.add('border-menu');
         locationCity.focus();
     }
 
-    if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests')) {
+    if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests') || e.target.classList.contains('iguest')) {
+        divLocation.classList.remove('border-menu');
+        divGuests.classList.add('border-menu');
         guests.focus();
     }
-
 }
 
 function closeMobileMenu() {
 
     fadeOutMenu();
-    
+
     findeMobile.style.top = '-730px';
 
     setTimeout(() => {

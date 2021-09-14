@@ -17,7 +17,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/styles.css">
-  
 </head>
 <body>
   
@@ -34,20 +33,21 @@
 
             
             <div class="findemobile_box-option">
-              <div>
+              <div class="box-location">
                 <p class="w-800">Location</p>
-                <input type="text" id="location" value="">
+                <input name="location" type="text" id="location" class="ilocation" value="" >
               </div>
-              <div>
+              <div class="box-guests">
                 <p class="w-800">Guests</p>
-                <input type="text" id="guests" placeholder="Add guests">
+                <input type="text" name="guests" id="guests" class="iguest" placeholder="Add guests">
               </div>
               <div class="md-search align-center">
                 <button class="btn">Search</button>
               </div>
             </div>
 
-            <ul class="list-country">
+            <div class="lists">
+            <ul class="list-country order-list">
               <li><span class="material-icons">
                 location_on
                 </span>
@@ -66,6 +66,29 @@
                 <span class="text-country">Vaasa, Finland</span></li>
             </ul>
 
+            <ul class="list-guest order-list">
+              <li><span class="material-icons">
+                location_on
+                </span>
+                <span class="text-country">Helsinki, Finland TEST </span></li>
+              <li><span class="material-icons">
+                location_on
+                </span>
+                <span class="text-country">Turku, Finland</span></li>
+              <li><span class="material-icons">
+                location_on
+                </span>
+                <span class="text-country">Oulu Finland</span></li>
+              <li><span class="material-icons">
+                location_on
+                </span>
+                <span class="text-country">Vaasa, Finland</span></li>
+            </ul>
+
+            <ul class="list-country">
+            
+            </ul>
+          </div>
             <div class="search-box">
                
               <button class="btn">Search</button>
