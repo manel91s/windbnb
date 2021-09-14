@@ -19,8 +19,9 @@ img {
     
 }
 
-
-
+.color-gray {
+    color: #828282;
+}
 .w-800 {
     font-weight: 800;
 }
@@ -276,9 +277,17 @@ header {
 }
 
 
-.list-country li, .list-guest li {
+.list-country li {
     display:flex;
     align-items: center;
+    font-weight:400;
+    font-size:1.4rem;  
+    padding-top: 3.4rem;
+}
+
+.list-guest li {
+    display:flex;
+    flex-direction: column;
     font-weight:400;
     font-size:1.4rem;  
     padding-top: 3.4rem;
@@ -343,6 +352,7 @@ button:before{
 
 .lists {
     display:flex;
+    
 }
 
 .lists > ul {
@@ -357,9 +367,25 @@ button:before{
     visibility:visible;
 }
 
-.order-list{
-    order: -1;
+.number-adults, .number-childrens {
+    width: 8rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}   
+
+.number-adults > div, .number-childrens div{
+    width:2.3rem;
+    height: 2.3rem;
+    border: 1px solid #828282;
+    border-radius: 4px;
+    text-align: center;
+    cursor:pointer;
 }
+
+
+
+
 
 
 
