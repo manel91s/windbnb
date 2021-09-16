@@ -1,5 +1,6 @@
 import { consultApartments } from './fetchApartments.js';
 
+const btnSearch = document.querySelector('.btn-search');
 const sectionCards = document.querySelector('.site-section_cards');
 const headerFinder = document.querySelector('.siteheader_finder');
 const findeMobile = document.querySelector('.siteheader_findemobile');
@@ -54,11 +55,14 @@ function addEventListeners() {
             countGuests(cont, index, countChildren);
         })
     })
+
+    btnSearch.addEventListener('click', searchApartments);
 }
 
-//Función para sumar los 
+//Función para sumar las personas por habitación
 function countGuests(cont, index, reference) {
 
+   
 
     if(cont >= 0 ) {
         if(index == 1) {
@@ -72,7 +76,7 @@ function countGuests(cont, index, reference) {
                 cont--;
             }
         }
-        
+        filter['guests'] = totalGuests;
         reference.innerHTML = cont;
         inputGuests.value = totalGuests;
     }
@@ -81,9 +85,8 @@ function countGuests(cont, index, reference) {
 function addInfoFilter(e) {
     focusBox(e);
     showList(e);
-    filter[e.target.name] = e.target.value;
-   
-    
+    filter[e.target.name] = e.target.value
+    console.log(filter);
 }
 
 function showList(e) {
@@ -123,6 +126,8 @@ function printListForMobile(input) {
 function putInput(e) {
     if(e.target.classList.contains('text-country')) {
         locationCity.value = e.target.textContent;
+        filter['location'] = e.target.textContent;
+        console.log(filter);
     }else if(e.target.classList.contains('text-guest')){
         inputGuests.value = e.target.textContent;
     }
@@ -154,13 +159,20 @@ function focusBox(e) {
         if(e.target.classList.contains('menu-city') || e.target.classList.contains('info-locality') || e.target.classList.contains('ilocation')){
         divGuests.classList.remove('border-menu');
         divLocation.classList.add('border-menu');
-        locationCity.focus();    
+        locationCity.focus();  
+        inputGuests.removeAttribute('disabled')
         }
 
     if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests') || e.target.classList.contains('iguest')) {
         divLocation.classList.remove('border-menu');
         divGuests.classList.add('border-menu');
         guests.focus();
+        e.target.setAttribute("disabled", "");
+        e.target.style.backgroundColor = 'transparent';
+
+        if(totalGuests != e.target.value) {
+            e.target.value = parseInt(totalGuests);
+        }
     }
 }
 
@@ -183,6 +195,41 @@ async function domLoaded() {
    
 }
 
+function searchApartments(e) {
+    e.preventDefault();
+    if(filter.location === '' || typeof(filter.location) !== 'string') {
+        printAlert('error', 'Field location is required or type string')
+        return;
+    }else if(filter.guests == '0') {
+        printAlert('error', 'Field guests has to be greather than 0')
+        return;
+    }
+}
+
+function printAlert(type, msg) {
+
+    const div = document.createElement('div');
+    const form = document.querySelector('#search-form');
+    div.classList.add('alert');
+
+    const error = document.querySelector('div.alert');
+    
+    if(error) {
+        error.remove();
+    }
+    
+    if(type === 'error') {
+        div.textContent = msg;
+    }
+
+    form.appendChild(div);
+
+    setTimeout(() => {
+        div.remove();
+    }, 3000);
+
+}
+
 function printApartments(apartments) {
     console.log(apartments);
     apartments.forEach(apartment => {
@@ -203,5 +250,7 @@ function printApartments(apartments) {
         sectionCards.appendChild(div);
     });
 }
+
+
 
 

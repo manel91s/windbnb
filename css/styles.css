@@ -12,7 +12,12 @@ body {
     font-size: 1.4rem;
 }
 
-
+.alert {
+    margin-top: 1rem;
+    padding: 2rem;
+    background-color: #f44336;
+    color: white;
+  }
 
 img {
     max-width: 100%;
@@ -382,7 +387,6 @@ button:before{
     text-align: center;
     cursor:pointer;
 }
-
 
 
 
