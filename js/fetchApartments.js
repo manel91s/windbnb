@@ -13,3 +13,5 @@ export async function consultApartments() {
     
     return response;
 }
+
+

@@ -1,6 +1,6 @@
 import { consultApartments } from './fetchApartments.js';
 
-const btnSearch = document.querySelector('.btn-search');
+const btnSearch = document.querySelectorAll('.btn');
 const sectionCards = document.querySelector('.site-section_cards');
 const headerFinder = document.querySelector('.siteheader_finder');
 const findeMobile = document.querySelector('.siteheader_findemobile');
@@ -9,7 +9,6 @@ const locationCity = document.querySelector('#location');
 const guests = document.querySelector('#guests');
 const listCountrys = document.querySelectorAll('.list-country li');
 const listGuests = document.querySelectorAll('.list-guest li');
-const siteSection = document.querySelector('.site-section');
 const divLocation = document.querySelector(".box-location");
 const divGuests = document.querySelector(".box-guests");
 const inputLocation = document.querySelector("#location");
@@ -18,14 +17,17 @@ const listCountry = document.querySelector('.list-country');
 const listGuest = document.querySelector('.list-guest');
 const buttonCountAdults = document.querySelectorAll('.number-adults > div');
 const buttonCountChildrens = document.querySelectorAll('.number-childrens > div');
+
 let totalGuests = 0;
 let countAdults = document.querySelector('#nAdults');
 let countChildren = document.querySelector('#nChildrens');
 
+let apartments = [];
 const filter = {
     location : '',
     guests   : ''
 }
+
 
 addEventListeners();
 
@@ -55,14 +57,13 @@ function addEventListeners() {
             countGuests(cont, index, countChildren);
         })
     })
-
-    btnSearch.addEventListener('click', searchApartments);
+    btnSearch.forEach((btn) => {
+        btn.addEventListener('click', searchApartments);
+    })
 }
 
 //Función para sumar las personas por habitación
 function countGuests(cont, index, reference) {
-
-   
 
     if(cont >= 0 ) {
         if(index == 1) {
@@ -190,20 +191,30 @@ function closeMobileMenu() {
 }
 
 async function domLoaded() {
-    const apartments = await consultApartments();
+    apartments = await consultApartments();
     printApartments(apartments);
    
 }
 
 function searchApartments(e) {
     e.preventDefault();
-    if(filter.location === '' || typeof(filter.location) !== 'string') {
+    
+    const { location, guests } = filter;
+
+    if(location === '' || typeof(location) !== 'string') {
         printAlert('error', 'Field location is required or type string')
         return;
-    }else if(filter.guests == '0') {
+    }else if(guests == '0') {
         printAlert('error', 'Field guests has to be greather than 0')
         return;
     }
+
+    
+    const filterApartments = apartments.filter((apartment) => { return apartment.city === location.substring(0, location.indexOf(',')) && guests <= apartment.maxGuests})
+    
+    printApartments(filterApartments);
+    closeMobileMenu();
+
 }
 
 function printAlert(type, msg) {
@@ -231,7 +242,9 @@ function printAlert(type, msg) {
 }
 
 function printApartments(apartments) {
-    console.log(apartments);
+    
+    clearHTML();
+
     apartments.forEach(apartment => {
         const {title, superHost, rating, photo, type, beds} = apartment;
 
@@ -249,6 +262,12 @@ function printApartments(apartments) {
 
         sectionCards.appendChild(div);
     });
+}
+
+function clearHTML() {
+    while(sectionCards.firstChild) {
+        sectionCards.removeChild(sectionCards.firstChild);
+    }
 }
 
 
