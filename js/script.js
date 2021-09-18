@@ -19,6 +19,8 @@ const buttonCountAdults = document.querySelectorAll('.number-adults > div');
 const buttonCountChildrens = document.querySelectorAll('.number-childrens > div');
 
 let totalGuests = 0;
+
+
 let countAdults = document.querySelector('#nAdults');
 let countChildren = document.querySelector('#nChildrens');
 
@@ -60,6 +62,7 @@ function addEventListeners() {
     btnSearch.forEach((btn) => {
         btn.addEventListener('click', searchApartments);
     })
+
 }
 
 //Función para sumar las personas por habitación
@@ -154,6 +157,7 @@ function showMenu(e) {
     findeMobile.style.top = '0px';
     focusBox(e);
 
+    detectClickOnScreen();
 }
 
 function focusBox(e) {
@@ -175,6 +179,24 @@ function focusBox(e) {
             e.target.value = parseInt(totalGuests);
         }
     }
+}
+
+function detectClickOnScreen() {
+
+    document.querySelector('body').addEventListener('click',(e) => {
+        
+        let Y = e.clientY;
+
+        if(window.matchMedia("(min-width:768px)").matches) {
+            if(Y >= 430) {
+                closeMobileMenu();
+            }
+        }else {
+            if(Y >= 750) {
+                closeMobileMenu();
+            }
+        }
+    })
 }
 
 
