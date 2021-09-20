@@ -169,10 +169,6 @@ function activeInputLocation() {
     locationCity.setAttribute("disabled", "");
     locationCity.style.backgroundColor = 'transparent';
 
-    if(window.matchMedia("(max-width:768px)").matches) {
-        locationCity.style.href = '#list-country';
-    }
-
 }
 
 function activeInputGuest() {
