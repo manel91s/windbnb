@@ -24,6 +24,14 @@ img {
     
 }
 
+.text-center {
+    text-align: center;
+}
+
+
+.pt-20 {
+    padding-top:2rem;
+}
 .color-gray {
     color: #828282;
 }
@@ -277,7 +285,7 @@ header {
 
 .list-country, .list-guest{
     list-style: none;
-    padding:0 2rem;   
+    padding:0 2rem;
     visibility: hidden;
 }
 
@@ -295,7 +303,7 @@ header {
     flex-direction: column;
     font-weight:400;
     font-size:1.4rem;  
-    padding-top: 3.4rem;
+    padding-top: 2.5rem;
 }
 
 .list-country li > span, .list-guest li > span {
@@ -303,11 +311,18 @@ header {
 }
 
 .search-box {
-    padding-top: 18rem;
+    padding-top: 3rem;
     text-align: center;
 }
 
+@media (min-width:768px) {
+    .search-box { 
+        padding-top: 18rem;
+    }
+}
+
 button {
+    cursor:pointer;
     padding-left: 5.5rem;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
@@ -361,6 +376,7 @@ button:before{
 }
 
 .lists > ul {
+    margin:0;
     flex-basis: calc(33.3%);
 }
 

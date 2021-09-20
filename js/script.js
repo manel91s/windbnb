@@ -37,8 +37,8 @@ function addEventListeners() {
     headerFinder.addEventListener('click', showMenu);
     closeMenu.addEventListener('click', closeMobileMenu);
     window.addEventListener('DOMContentLoaded', domLoaded);
-    inputLocation.addEventListener('input', addInfoFilter);
-    inputGuests.addEventListener('input', addInfoFilter);
+    inputLocation.addEventListener('click', addInfoFilter);
+    inputGuests.addEventListener('click', addInfoFilter);
 
     listCountrys.forEach((country) => {
         country.addEventListener('click', putInput);
@@ -89,12 +89,15 @@ function countGuests(cont, index, reference) {
 function addInfoFilter(e) {
     focusBox(e);
     showList(e);
-    filter[e.target.name] = e.target.value
-    console.log(filter);
+
+    if(e.target.value !== 'undefined') {
+        filter[e.target.name] = e.target.value
+    }
+    
 }
 
 function showList(e) {
-    if(e.target.classList.contains('ilocation')){
+    if(e.target.classList.contains('ilocation') || e.target.classList.contains('info-locality') || e.target.classList.contains('menu-city')){
         listGuest.classList.remove('v-visible');
         listCountry.classList.add('v-visible');
 
@@ -131,7 +134,7 @@ function putInput(e) {
     if(e.target.classList.contains('text-country')) {
         locationCity.value = e.target.textContent;
         filter['location'] = e.target.textContent;
-        console.log(filter);
+       
     }else if(e.target.classList.contains('text-guest')){
         inputGuests.value = e.target.textContent;
     }
@@ -152,32 +155,48 @@ function fadeOutMenu() {
 function showMenu(e) {
     
     fadeInMenu();
-
     findeMobile.style.visibility = 'visible';
     findeMobile.style.top = '0px';
-    focusBox(e);
-
+    addInfoFilter(e);
     detectClickOnScreen();
 }
 
+function activeInputLocation() {
+    divGuests.classList.remove('border-menu');
+    divLocation.classList.add('border-menu');
+    locationCity.focus();  
+    inputGuests.removeAttribute('disabled')
+    locationCity.setAttribute("disabled", "");
+    locationCity.style.backgroundColor = 'transparent';
+
+    if(window.matchMedia("(max-width:768px)").matches) {
+        locationCity.style.href = '#list-country';
+    }
+
+}
+
+function activeInputGuest() {
+    divLocation.classList.remove('border-menu');
+    divGuests.classList.add('border-menu');
+    guests.focus();
+    locationCity.removeAttribute('disabled')
+    inputGuests.setAttribute("disabled", "");
+    inputGuests.style.backgroundColor = 'transparent';
+}
+
 function focusBox(e) {
+
+     
         if(e.target.classList.contains('menu-city') || e.target.classList.contains('info-locality') || e.target.classList.contains('ilocation')){
-        divGuests.classList.remove('border-menu');
-        divLocation.classList.add('border-menu');
-        locationCity.focus();  
-        inputGuests.removeAttribute('disabled')
+            activeInputLocation();
         }
 
-    if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests') || e.target.classList.contains('iguest')) {
-        divLocation.classList.remove('border-menu');
-        divGuests.classList.add('border-menu');
-        guests.focus();
-        e.target.setAttribute("disabled", "");
-        e.target.style.backgroundColor = 'transparent';
-
-        if(totalGuests != e.target.value) {
-            e.target.value = parseInt(totalGuests);
-        }
+        if(e.target.classList.contains('info-guests') || e.target.classList.contains('guests') || e.target.classList.contains('iguest')) {
+            activeInputGuest();
+            
+            if(totalGuests != e.target.value) {
+                e.target.value = parseInt(totalGuests);
+            }
     }
 }
 
@@ -199,6 +218,14 @@ function detectClickOnScreen() {
     })
 }
 
+function showParameters() {
+    const infoLocality = document.querySelector('.info-locality')
+    const infoGuest = document.querySelector('.info-guests');
+
+    infoLocality.innerHTML = inputLocation.value;
+    infoGuest.innerHTML = inputGuests.value;
+
+}
 
 
 function closeMobileMenu() {
@@ -235,6 +262,7 @@ function searchApartments(e) {
     const filterApartments = apartments.filter((apartment) => { return apartment.city === location.substring(0, location.indexOf(',')) && guests <= apartment.maxGuests})
     
     printApartments(filterApartments);
+    showParameters();
     closeMobileMenu();
 
 }
@@ -266,7 +294,13 @@ function printAlert(type, msg) {
 function printApartments(apartments) {
     
     clearHTML();
-
+    
+    document.querySelector('#countApartment').innerHTML=`${apartments.length}+ stays`
+    
+    if(filter.location !== ''){
+        document.querySelector('#nameLocation').innerHTML=`Stays in ${filter.location}`;
+    }
+    
     apartments.forEach(apartment => {
         const {title, superHost, rating, photo, type, beds} = apartment;
 
